@@ -151,16 +151,16 @@ class textCNN(nn.Module):
 class LSTM_TEST(nn.Module):
     def __init__(self, input_dim, ouput_size):
         super(LSTM_TEST, self).__init__()
-        self.lstm = nn.LSTM(input_dim, 1024, batch_first=True, num_layers = 2)
-        self.weight = nn.Linear(1024, ouput_size)
+        self.lstm = nn.LSTM(input_dim, 300, batch_first=True, num_layers = 2)
+        self.weight = nn.Linear(300, ouput_size)
         self.act = nn.Sigmoid()
         self.drop = nn.Dropout(0.8)
+        self.norm = nn.LayerNorm(300)
 
     def forward(self, input_x):
+        input_x = self.norm(input_x)
         (y, (h_n, c_n)) = self.lstm(input_x)
         
-
-        y = self.drop(y)
         out = self.weight(y[:, -1, :]).squeeze(dim=1)
         out = self.act(out)
         return out
