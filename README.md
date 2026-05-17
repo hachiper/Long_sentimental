@@ -1,4 +1,4 @@
-# PETNN/QURNN for ACL-IMDB Sentiment Classification
+# PETNN for ACL-IMDB Sentiment Classification
 
 This repository provides a simple implementation of PETNN/QURNN for ACL-IMDB sentiment classification. It is mainly used for reviewer-side testing in the response letter.
 
